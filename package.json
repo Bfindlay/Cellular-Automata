@@ -1,22 +1,22 @@
 {
-  "name": "express-react-boilerplate",
+  "name": "cellular-automata",
   "version": "0.0.1",
-  "description": "React boilerplate with hot reloading combined with an express server for API development",
+  "description": "A cellular automata experiment using react",
   "scripts": {
     "build": "webpack --config webpack.config.js --progress --profile --colors",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bfindlay/Express-React-Boilerplate.git"
+    "url": "git+https://github.com/Bfindlay/Cellular-Automata.git"
   },
   "keywords": [],
   "author": "Bfindlay",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Bfindlay/Express-React-Boilerplate.gitissues"
+    "url": "https://github.com/Bfindlay/Cellular-Automata.git/issues"
   },
-  "homepage": "https://github.com/Bfindlay/Express-React-Boilerplate.git#readme",
+  "homepage": "https://github.com/Bfindlay/Cellular-Automata.git#readme",
   "devDependencies": {
     "babel-core": "6.21.0",
     "babel-loader": "6.2.10",
