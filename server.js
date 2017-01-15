@@ -17,8 +17,10 @@ if(DEV){
     console.log('Api server running on', PORT);
   });
 
-  app.get('/', function response(req, res) {
-    
+  app.get('/api', (req, res) => {
+    res.send('Hello Api')
+  })
+  app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
   });
 
@@ -48,8 +50,7 @@ if(DEV){
     console.log('express server running on', PORT);
   });
 
-  app.get('/', function response(req, res) {
-    
+  app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
   });
 
