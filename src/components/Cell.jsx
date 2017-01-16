@@ -15,11 +15,16 @@ class Cell extends Component {
          this.setState({color: `rgba(4,236,50,${opacity})`});
         
     }
+    health(){
+        this.setState({color: `rgba(255,0,0,0.8)`})
+    }
+    componentDidMount(){
+    }
     render(){
        //setInterval(this.evolve.bind(this), Math.random()*300);
+       
         return(
-            <div style={{backgroundColor: this.state.color}} className='cell'>
-            </div>
+            <div onClick={()=> console.log(this.state.coords)} style={{backgroundColor: this.state.color}} className='cell' />
         )
     }
 }
