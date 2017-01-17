@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { retrieveCells, setCells } from '../actions'
+
 import Cell from './Cell.jsx';
 import CellRow from './CellRow.jsx';
 class App extends Component {
@@ -20,22 +23,23 @@ class App extends Component {
             arr[x][y] = c;    
         }    
     }
-    this.setState({cells: arr})
+    this.props.setCells(arr);
   }
 
   componentWillMount(){
-    this.generateCells(10);
+    this.generateCells(20);
   }
 
   render() {
+    const { cells } = this.props;
     return (
       <div className='container'>
         <div style={{"width" : this.state.width}} className='cell-container'>
-            { this.state.cells.map( (arr) => {
-                arr = arr.map( element => {
+            { cells.map( (arr) => {
+                arr = arr.map( (element) => {
                   return <Cell key={Math.random()} coords={element.location}/> 
                 });
-                return <CellRow cells={arr} />
+                return <CellRow key={Math.random()} cells={arr} />
             })}
         </div>
       </div>
@@ -49,25 +53,33 @@ class C {
       x: x,
       y: y
     }
-    this.parent = null;
-    this.left = null;
-    this.right = null;
-    this.child = null;
+
+    this.color = `rgba(4, 236, 50, ${Math.random()})`
+    this.topLeft = {x: x-1, y: y-1}
+    this.top = {x, y: y-1}
+    this.topRight = {x: x+1, y: y-1}
+    
+    this.midLeft = {x: x-1, y}
+    this.midRight = {x: x+1, y}
+
+    this.botLeft = {x: x-1, y: y+1}
+    this.bot = {x, y: y+1}
+    this.botRight = {x: x+1, y: y+1}
+
     this.health = 1;
   }
-  linkNode(node){
-    const { parent, left, right, child } = node;
-    this.parent = parent;
-    this.left = left;
-    this.right = right;
-    this.child = child;
+  setColor(){
+    this.color = `rgba(255, 0, 0, 1)`
+    console.log(this.color);
   }
   setHealth(x){
     this.health = x;
   }
-  getNeighbours(){
-    return { parent: this.parent, left: this.left, right:this.right, child: this.child};
-  }
+ 
 }
 
-export default App;
+const mapStateToProps = ({ Cellular }) => {
+  const { cells } = Cellular;
+  return {cells};
+}
+export default connect(mapStateToProps, { retrieveCells, setCells })(App);

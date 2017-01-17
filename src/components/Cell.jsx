@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+import { setCellColor } from '../actions';
+
 class Cell extends Component {
 
     constructor(props){
         super(props);
-        const { coords } = props;
-        this.state = {
-            coords,
-            color: `rgba(4, 236, 50, ${Math.random()})`
-        }
     }
     evolve(){
         let opacity = Math.random();
@@ -19,14 +17,20 @@ class Cell extends Component {
         this.setState({color: `rgba(255,0,0,0.8)`})
     }
     componentDidMount(){
+
     }
     render(){
-       //setInterval(this.evolve.bind(this), Math.random()*300);
-       
+       //setInterval(this.evolve.bind(this), Math.random()*10000);
+       const { cells, coords } = this.props;
+       const node = cells[coords.x][coords.y];
+       //console.log(node);
         return(
-            <div onClick={()=> console.log(this.state.coords)} style={{backgroundColor: this.state.color}} className='cell' />
+            <div onClick={()=> this.props.setCellColor(this.props.coords)} style={{backgroundColor: node.color}} className='cell' />
         )
     }
 }
-
-export default Cell;
+const mapStateToProps = ({ Cellular }) => {
+    const { cells } = Cellular;
+    return { cells }
+}
+export default connect(mapStateToProps,{setCellColor })(Cell);
