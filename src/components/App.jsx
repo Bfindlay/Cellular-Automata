@@ -10,7 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       cells: [],
-      width: null
+      width: null,
+      size: null
     }
   }
   generateCells(size){
@@ -26,14 +27,11 @@ class App extends Component {
     this.props.setCells(arr);
   }
 
-  componentWillMount(){
-    this.generateCells(20);
-  }
 
-  render() {
+
+  renderGrid(){
     const { cells } = this.props;
     return (
-      <div className='container'>
         <div style={{"width" : this.state.width}} className='cell-container'>
             { cells.map( (arr) => {
                 arr = arr.map( (element) => {
@@ -42,6 +40,18 @@ class App extends Component {
                 return <CellRow key={Math.random()} cells={arr} />
             })}
         </div>
+    )
+  }
+  render() {
+    const { cells } = this.props;
+    return (
+      <div className='container'>
+        <h4> Welcome To Cellular Automata </h4>
+        <div className='input-container'>
+          <input type='number' onChange={(e)=> this.setState({size:e.target.value})}placeholder='Cell Grid Size'/ >
+          <input type='button' onClick={() => this.generateCells(this.state.size)}value='Generate'/>
+        </div>
+          { this.renderGrid() }
       </div>
     )
   }
@@ -68,9 +78,8 @@ class C {
 
     this.health = 1;
   }
-  setColor(){
-    this.color = `rgba(255, 0, 0, 1)`
-    console.log(this.color);
+  setColor(color){
+    this.color = color;
   }
   setHealth(x){
     this.health = x;

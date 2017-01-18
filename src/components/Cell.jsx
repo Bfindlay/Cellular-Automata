@@ -8,24 +8,28 @@ class Cell extends Component {
     constructor(props){
         super(props);
     }
+
     evolve(){
         let opacity = Math.random();
-         this.setState({color: `rgba(4,236,50,${opacity})`});
+        if(opacity <= 0.05){
+            return this.props.setCellColor(this.props.coords,`rgba(255,0,0,${Math.random()})` )
+        }
+            return this.props.setCellColor(this.props.coords,`rgba(${Math.random()*10},255,${Math.random()*10},${Math.random()})` )
         
     }
     health(){
         this.setState({color: `rgba(255,0,0,0.8)`})
     }
+    
     componentDidMount(){
-
+         
     }
     render(){
-       //setInterval(this.evolve.bind(this), Math.random()*10000);
+      // setInterval(this.evolve.bind(this), 3000);
        const { cells, coords } = this.props;
        const node = cells[coords.x][coords.y];
-       //console.log(node);
         return(
-            <div onClick={()=> this.props.setCellColor(this.props.coords)} style={{backgroundColor: node.color}} className='cell' />
+            <div style={{backgroundColor: node.color}} className='cell' />
         )
     }
 }
@@ -33,4 +37,4 @@ const mapStateToProps = ({ Cellular }) => {
     const { cells } = Cellular;
     return { cells }
 }
-export default connect(mapStateToProps,{setCellColor })(Cell);
+export default connect(mapStateToProps, {setCellColor })(Cell);

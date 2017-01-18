@@ -13,6 +13,6 @@ export const setCells = cells => {
     return { type: SET_CELLS, payload: cells}
 }
 
-export const setCellColor = color => {
-    return { type: SET_CELL_COLOR, payload: color}
+export const setCellColor = (geo, color) => {
+    return { type: SET_CELL_COLOR, payload: {geo, color}}
 }

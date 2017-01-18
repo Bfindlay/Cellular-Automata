@@ -15,11 +15,10 @@ export default (state = INITIAL_STATE, action) => {
         case SET_CELLS:
             return {...state, cells: action.payload}
         case SET_CELL_COLOR:
-            let node = state.cells[action.payload.x][action.payload.y]
+            let node = state.cells[action.payload.geo.x][action.payload.geo.y]
             let cells = [...state.cells];
-            cells[action.payload.x][action.payload.y] = node;
-            node.setColor();
-            console.log(node.color);
+            cells[action.payload.geo.x][action.payload.geo.y] = node;
+            node.setColor(action.payload.color);
             return { ...state, cells}
         default:
             return state;
