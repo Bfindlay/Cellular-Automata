@@ -1,7 +1,8 @@
 import { 
   RETRIEVE_CELLS,
   SET_CELLS,
-  SET_CELL_COLOR
+  SET_CELL_COLOR,
+  EVOLVE_CELLS
 } from '../actions/types';
 
 const INITIAL_STATE = { 
@@ -13,6 +14,8 @@ export default (state = INITIAL_STATE, action) => {
         case RETRIEVE_CELLS:
             return {...state, user: action.payload}
         case SET_CELLS:
+            return {...state, cells: action.payload}
+        case EVOLVE_CELLS:
             return {...state, cells: action.payload}
         case SET_CELL_COLOR:
             let node = state.cells[action.payload.geo.x][action.payload.geo.y]
