@@ -3,7 +3,7 @@
 
 ## Getting started
 1. ```git clone```
-2. ``cd Cellular-Automata```
+2. ```cd Cellular-Automata```
 3. Run ```npm install```
 4. Run ```npm start ```
   
